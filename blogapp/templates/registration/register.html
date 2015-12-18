@@ -1,0 +1,29 @@
+<a href="{% url 'blogapp:index' %}">Home</a>
+
+<h1>Inscription</h1>
+
+{% if errors %}
+    <ul>
+        {% for key, error in errors.items %}
+            <li>{{key}} : {{error}}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'blogapp:register' %}" method="post">
+    {% csrf_token %}
+    <label for='username'>Username</label>
+    <input type='text' name='username' id='username'><br>
+
+    <label for='email'>Email</label>
+    <input type='text' name='email' id='email'><br>
+
+    <label for='password'>Password</label>
+    <input type='password' name='password' id='password'><br>
+    <label for='verif'>Verif.</label>
+    <input type='password' name='verif' id='verif'><br>
+
+    <input type='submit' value="S'inscrire">
+</form>

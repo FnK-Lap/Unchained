@@ -1,0 +1,23 @@
+{% if user.is_authenticated %}
+    <div>Bonjour {{user}}</div>
+{% endif %}
+
+<a href="{% url 'blogapp:index' %}">Home</a> 
+
+<h1>Nouveau Post</h1>
+
+{% if errors %}
+    <ul>
+        {% for key, error in errors.items %}
+            <li>{{key}} : {{error}}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<form action="{% url 'blogapp:newPost' %}" method="post">
+    {% csrf_token %}
+    <label for='content'>Contenu</label>
+    <textarea name='content' id='content'></textarea>
+
+    <input type='submit' value="Publier">
+</form>
